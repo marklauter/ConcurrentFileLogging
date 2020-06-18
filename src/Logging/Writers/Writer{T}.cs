@@ -33,7 +33,7 @@ namespace Logging.Writers
         protected void Listen(CancellationToken cancellationToken)
         {
             var wait = default(SpinWait);
-            while (!this.CanListen())
+            while (!this.CanListen() && !cancellationToken.IsCancellationRequested)
             {
                 wait.SpinOnce();
             }
